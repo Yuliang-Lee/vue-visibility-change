@@ -1,0 +1,39 @@
+{
+  "name": "vue-visibility-change",
+  "version": "1.0.0",
+  "description": "vue directive for detect page visibility-change",
+  "main": "./lib/vue-visibility.js",
+  "scripts": {
+    "lint": "eslint .",
+    "build": "webpack"
+  },
+  "bugs": {
+    "url": "https://github.com/Yuliang-Lee/vue-visibility-change/issues"
+  },
+  "homepage": "https://github.com/Yuliang-Lee/vue-visibility-change",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Yuliang-Lee/vue-visibility-change.git"
+  },
+  "keywords": [
+    "vue",
+    "directive",
+    "visibility-change"
+  ],
+  "author": "xlaoyu <frank_yll@163.com>",
+  "license": "MIT",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "babel-eslint": "^8.1.2",
+    "eslint": "^4.15.0",
+    "eslint-plugin-vue": "^4.1.0",
+    "webpack": "^3.10.0"
+  },
+  "files": [
+    "lib"
+  ]
+}
