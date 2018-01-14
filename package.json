@@ -5,7 +5,8 @@
   "main": "./lib/vue-visibility.js",
   "scripts": {
     "lint": "eslint .",
-    "build": "webpack"
+    "build": "webpack --config build/webpack.prod.conf.js",
+    "test": "cross-env NODE_ENV=test karma start test/karma.conf.js --single-run"
   },
   "bugs": {
     "url": "https://github.com/Yuliang-Lee/vue-visibility-change/issues"
@@ -22,15 +23,32 @@
   ],
   "author": "xlaoyu <frank_yll@163.com>",
   "license": "MIT",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2",
-    "babel-preset-env": "^1.6.1",
     "babel-eslint": "^8.1.2",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-istanbul": "^4.1.5",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-power-assert": "^1.0.0",
+    "cross-env": "^5.1.3",
     "eslint": "^4.15.0",
+    "eslint-friendly-formatter": "^3.0.0",
+    "eslint-loader": "^1.9.0",
     "eslint-plugin-vue": "^4.1.0",
+    "karma": "^2.0.0",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-coverage": "^1.1.1",
+    "karma-mocha": "^1.3.0",
+    "karma-power-assert": "^1.0.0",
+    "karma-sourcemap-loader": "^0.3.7",
+    "karma-spec-reporter": "0.0.32",
+    "karma-webpack": "^2.0.9",
+    "mocha": "^4.1.0",
+    "power-assert": "^1.4.4",
+    "puppeteer": "^0.13.0",
+    "sinon": "^4.1.5",
+    "vue": "^2.5.13",
     "webpack": "^3.10.0"
   },
   "files": [

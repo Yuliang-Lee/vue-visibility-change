@@ -1,6 +1,7 @@
 const _id = Symbol('visibility-change-id');
 
 let hidden, visibilityChange, lastId = -1;
+/* istanbul ignore else */
 if (typeof document.hidden !== "undefined") { // Opera 12.10 and Firefox 18 and later support
   hidden = "hidden";
   visibilityChange = "visibilitychange";
@@ -15,11 +16,39 @@ if (typeof document.hidden !== "undefined") { // Opera 12.10 and Firefox 18 and 
   visibilityChange = "mozvisibilitychange";
 }
 
-const visibility = {
-  // 缓存 visibility change 触发时的回调函数
-  _callbacks: {},
+// 缓存 visibility change 触发时的回调函数
+const _callbacks = {};
+const _doc = document;
+let _init;
 
-  _doc: document,
+/**
+ * Listener for `visibilitychange` event.
+ * @param {Event} event event object
+ */
+function _change(event) {
+  for ( var i in _callbacks ) {
+    _callbacks[i].call(_doc, event, _doc[hidden]);
+  }
+}
+
+/**
+ * Set listener for `visibilitychange` event.
+ */
+function _listen() {
+  /* istanbul ignore if */
+  if (_init) {
+    return;
+  }
+
+  var listener = function () {
+    _change.apply(visibility, arguments);
+  };
+  document.addEventListener(visibilityChange, listener);
+
+  _init = true;
+}
+
+const visibility = {
 
   /**
    * 当可见性发生变化时调用回调。
@@ -35,8 +64,8 @@ const visibility = {
     }
     lastId += 1;
     var number = lastId;
-    visibility._callbacks[number] = callback;
-    visibility._listen();
+    _callbacks[number] = callback;
+    _listen();
     return number;
   },
 
@@ -52,7 +81,7 @@ const visibility = {
    * });
    */
   unbind(id) {
-    delete visibility._callbacks[id];
+    delete _callbacks[id];
   },
 
   /**
@@ -66,33 +95,7 @@ const visibility = {
    * Return true if page now isn’t visible to user.
    */
   hidden() {
-    return visibility._doc[hidden];
-  },
-
-  /**
-   * Listener for `visibilitychange` event.
-   * @param {Event} event event object
-   */
-  _change(event) {
-    for ( var i in visibility._callbacks ) {
-      visibility._callbacks[i].call(visibility._doc, event, visibility._doc[hidden]);
-    }
-  },
-
-  /**
-   * Set listener for `visibilitychange` event.
-   */
-  _listen() {
-    if (visibility._init) {
-      return;
-    }
-
-    var listener = function () {
-      visibility._change.apply(visibility, arguments);
-    };
-    document.addEventListener(visibilityChange, listener);
-
-    visibility._init = true;
+    return _doc[hidden];
   }
 };
 
@@ -104,6 +107,8 @@ visibility.install = function(Vue) {
         el[_id] = visibility.change((evt, hidden) => {
           value(evt, hidden);
         });
+      } else {
+        console.error('You need bind a callback function');
       }
     },
     unbind(el) {

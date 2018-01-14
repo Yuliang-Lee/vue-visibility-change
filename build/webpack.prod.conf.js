@@ -1,9 +1,13 @@
 const path = require('path');
 
+function resolve(dir) {
+  return path.resolve(__dirname, '..', dir);
+}
+
 module.exports = {
   entry: './src/index.js',
   output: {
-    path: path.resolve(__dirname, "lib"),
+    path: resolve("lib"),
     filename: 'vue-visibility.js',
     library: 'visibility',
     libraryTarget: 'umd'
@@ -13,7 +17,7 @@ module.exports = {
       {
         test: /\.js$/,
         include: [
-          path.resolve(__dirname, "src")
+          resolve("src")
         ],
         loader: 'babel-loader'
       }

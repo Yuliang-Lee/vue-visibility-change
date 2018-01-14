@@ -2,15 +2,16 @@
 
 Page Visibility API wrapper for vuejs.
 
-## feature
+## Features
 
 - no denpendencies
 - support vue directive && global callback
 - detect page visibility state
+- full tests in chrome, theoretically compatible with IE > 10,	Firefox > 10, Safari > 6.1
 
 ## Usage
 
-### 安装
+### install
 
 #### npm
 
@@ -25,7 +26,7 @@ $ npm i vue-visibility-change -S
 <script src="./lib/vue-visibility.js"></script>
 ```
 
-### 
+### global
 
 ```js
 import Vue from 'vue';
@@ -35,9 +36,34 @@ import visibility from 'vue-visibility-change';
 Vue.use(visibility);
 
 // global mode
-visibility.change((evt, hidden) => {
+const handler = visibility.change((evt, hidden) => {
   // do something
 });
+
+visibility.hidden(); // Return true if page now isn’t visible to user.
+
+visibility.unbind(handler); // Remove `change` listener by it's handler.
+
+visibility.isSupported(); // Return true if browser support Page Visibility API.
+```
+
+### vue-directive
+
+```html
+<template>
+  <div v-visibility-change="visibilityChange">
+  </div>
+</template>
+<script>
+export default {
+  methods: {
+    visibilityChange(hidden) {
+      // do something
+      console.log(hidden);
+    }
+  }
+};
+</script>
 ```
 
 ## Demo
