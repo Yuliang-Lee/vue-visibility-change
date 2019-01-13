@@ -53,7 +53,7 @@ const visibility = {
   /**
    * 当可见性发生变化时调用回调。
    * 事件监听会在第一个回调绑定时才注册，这是一个延时行为
-   * 
+   *
    * @param {Function (event, hidden)} callback 回调函数
    *  - {Event} event 原始事件对象
    *  - {Boolean} hidden 表示当前页面可见性，true 表示可见
@@ -71,9 +71,9 @@ const visibility = {
 
   /**
    * Remove `change` listener by it ID.
-   * 
+   *
    * @param {Number} id 回调标识
-   * 
+   *
    * @example
    * var id = visibility.change(function(e, state) {
    *     firstChangeCallback();
@@ -108,7 +108,7 @@ visibility.install = function(Vue) {
           value(evt, hidden);
         });
       } else {
-        console.error('You need bind a callback function');
+        console.error('You need bind a callback function for v-visibility-change');
       }
     },
     unbind(el) {

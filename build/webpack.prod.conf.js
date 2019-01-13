@@ -5,6 +5,7 @@ function resolve(dir) {
 }
 
 module.exports = {
+  mode: 'production',
   entry: './src/index.js',
   output: {
     path: resolve("lib"),
@@ -26,5 +27,5 @@ module.exports = {
   resolve: {
     extensions: ['js'],
   }
-  
+
 };

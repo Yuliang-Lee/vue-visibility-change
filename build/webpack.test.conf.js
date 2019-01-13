@@ -7,6 +7,7 @@ function resolve(dir) {
 }
 
 module.exports = {
+  mode: 'production',
   devtool: '#inline-source-map',
   output: {
     path: resolve('dist'),
