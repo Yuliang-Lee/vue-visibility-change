@@ -62,7 +62,7 @@ visibility.isSupported(); // Return true if browser support Page Visibility API.
 <script>
 export default {
   methods: {
-    visibilityChange(hidden) {
+    visibilityChange(evt, hidden) {
       // do something
       console.log(hidden);
     }
