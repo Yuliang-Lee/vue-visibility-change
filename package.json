@@ -1,6 +1,6 @@
 {
   "name": "vue-visibility-change",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "vue directive for detect page visibility-change",
   "main": "./lib/vue-visibility.js",
   "scripts": {
