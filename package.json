@@ -52,6 +52,8 @@
     "webpack-cli": "^3.2.1"
   },
   "files": [
-    "lib"
-  ]
+    "lib",
+    "types"
+  ],
+  "typings": "types/index.d.ts"
 }
